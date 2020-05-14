@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        Username:
+    </div>
+    <div class="card-body">
+        <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control form-control-lg" placeholder="Username" formControlName="username">
+
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">></button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
+        <div style="display: flex;">
+            <div *ngFor="let letter of output">
+                <h2 [ngStyle]="{ 'color': getLetterColour(letter) }">
+                    {{letter}}
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
