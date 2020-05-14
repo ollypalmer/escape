@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -8,17 +8,22 @@ import { FormBuilder } from '@angular/forms';
 })
 export class InputFormComponent implements OnInit {
 
+  @Input() type: string;
+
   @Input() target: string;
+
+  @Input() passwordMode: string;
+
+  @Output() complete = new EventEmitter();
 
   targetLetterArray: string[];
 
-  username;
-  userform;
+  inputForm;
   output = [];
 
   constructor(private formBuilder: FormBuilder) {
-    this.userform = this.formBuilder.group({
-      username: ''
+    this.inputForm = this.formBuilder.group({
+      inputValue: ''
     });
   }
 
@@ -27,37 +32,48 @@ export class InputFormComponent implements OnInit {
   }
 
   onSubmit(data) {
-    this.userform.reset();
+    this.inputForm.reset();
 
-    this.username = data.username;
+    this.processAnswer(data.inputValue);
 
-    this.processAnswer(data.username);
-
-    if (data.username.toLowerCase() === this.target.toLowerCase()) {
-      alert('yay');
+    if (data.inputValue.toLowerCase() === this.target.toLowerCase()) {
+      this.complete.emit();
     }
   }
 
   processAnswer(answer: string) {
     const answerArray = answer.split("");
 
-    this.output = []
+    this.output = [];
 
     for (let i = 0; i < answerArray.length; i++) {
       if (i < this.targetLetterArray.length && answerArray[i].toLowerCase() === this.targetLetterArray[i].toLowerCase()) {
-        this.output.push(answerArray[i].toLowerCase());
+
+        let letter;
+        if (this.passwordMode === "true") { // very silly but cba to figure out input bools at this stage...
+          letter = "*";
+        } else {
+          letter = answerArray[i].toLowerCase();
+        }
+
+        this.output.push({
+            letter: letter,
+            colour: "green"
+          });
       } else {
-        this.output.push("*");
+        this.output.push({
+          letter: "*",
+          colour: "red"
+        });
       }
     }
   }
 
-  getLetterColour(letter) {
-    if (letter === "*") {
-      return "red";
+  getType() {
+    if (this.passwordMode === "true") { // very silly but cba to figure out input bools at this stage...
+      return "password";
     } else {
-      return "green";
+      return "text";
     }
   }
-
 }
