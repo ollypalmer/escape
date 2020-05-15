@@ -1,27 +1,21 @@
-# PasswordCrackerGame
+# Escape
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+A silly password cracking game I made for a friends birthday.
 
-## Development server
+All I really wanted to do was make the matrix background...
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Usage
 
-## Code scaffolding
+requirements: angular 9
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+clone, npm install, ready to go...
 
-## Build
+## How to
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+A bit like hangman.
 
-## Running unit tests
+Guess the username, see which letters you get right.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Guess the password, see which letters you get right but the values are obscured.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Get the prize! Where does that lead to??
