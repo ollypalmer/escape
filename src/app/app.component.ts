@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { timer } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +7,18 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'password-cracker-game';
+  /** nicked from https://codepen.io/P3R0/pen/MwgoKv */
 
   @ViewChild("canvas", { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
 
-  width = 1600;
+  width = 600;
   height = 300;
 
   chars = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
   chinese: string[];
   fontSize;
-  drops
+  drops;
 
   private ctx: CanvasRenderingContext2D;
 
@@ -55,7 +54,7 @@ export class AppComponent implements OnInit {
     for (var i = 0; i < this.drops.length; i++) {
       //a random chinese character to print
       var text = this.chinese[Math.floor(Math.random() * this.chinese.length)];
-      //x = i*font_size, y = value of drops[i]*font_size
+
       this.ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
 
       //sending the drop back to the top randomly after it has crossed the screen
