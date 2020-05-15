@@ -1,13 +1,1 @@
-<div class="container">
-    <div class="col d-flex justify-content-center">
-      <div *ngIf="!userStage">
-        <app-input-form type="Username" target="olly" passwordMode="false" (complete)=usernameComplete()></app-input-form>
-      </div>
-      <div *ngIf="userStage && !passwordStage">
-        <app-input-form type="Password" target="rolly" passwordMode="true" (complete)=passwordComplete()></app-input-form>
-      </div>
-      <div *ngIf="userStage && passwordStage">
-        <h2>FINISHED!</h2>
-      </div>
-    </div>
-</div>
+<app-controller></app-controller>

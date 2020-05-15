@@ -7,15 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'password-cracker-game';
-
-  userStage = false;
-  passwordStage = false;
-
-  usernameComplete() {
-    this.userStage = true;
-  }
-
-  passwordComplete() {
-    this.passwordStage = true;
-  }
 }
