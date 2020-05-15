@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-controller',
@@ -9,6 +10,9 @@ export class ControllerComponent implements OnInit {
 
   userStage = false;
   passwordStage = false;
+
+  username = "nobhead"
+  password = "whatadick"
 
   constructor() { }
 

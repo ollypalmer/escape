@@ -7,12 +7,14 @@ import { InputFormComponent } from './input-form/input-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ControllerComponent } from './controller/controller.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputFormComponent,
-    ControllerComponent
+    ControllerComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
