@@ -5,10 +5,13 @@
     <div class="card-body">
         <form [formGroup]="inputForm" (ngSubmit)="onSubmit(inputForm.value)">
             <div class="input-group input-group-lg">
-                <input type="{{getType()}}" class="form-control form-control-lg" placeholder="{{type}}" formControlName="inputValue">
+                <input type="{{getType()}}" class="form-control form-control-lg" placeholder="{{type}}"
+                    formControlName="inputValue">
 
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit"><fa-icon [icon]="faAngleRight"></fa-icon></button>
+                    <button class="btn btn-primary" type="submit">
+                        <fa-icon [icon]="faAngleRight"></fa-icon>
+                    </button>
                 </div>
             </div>
         </form>
@@ -23,12 +26,25 @@
                     </h2>
                 </div>
             </div>
-    
+
             <div class="col-sm">
-                <button class="btn btn-outline-primary" style="float: right;"><fa-icon [icon]="faQuestion"></fa-icon></button>
+                <button class="btn btn-outline-primary" style="float: right;" placement="right"
+                    [ngbTooltip]="helpContent">
+                    <fa-icon [icon]="faQuestion"></fa-icon>
+                </button>
             </div>
         </div>
 
-        
+
     </div>
 </div>
+
+<ng-template #helpContent>
+    <div *ngFor="let help of getHelpMessage()">
+        {{help}}
+    </div>
+    <hr>
+    <p>
+        <i>{{getHelpCountDown()}}</i>
+    </p>
+</ng-template>

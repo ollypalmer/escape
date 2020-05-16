@@ -21,10 +21,20 @@ export class InputFormComponent implements OnInit {
   targetLetterArray: string[];
 
   faAngleRight = faAngleRight;
-  faQuestion = faQuestion; 
+  faQuestion = faQuestion;
 
   inputForm;
   output = [];
+  attempts: number;
+
+  helpMessages: string[] = [
+    "At least have a go first...",
+    "Not case sensitive.",
+    "All letters, no numbers or symbols.",
+    "No spaces.",
+    "Try more than one word.",
+    "It's like hangman, y'know hangman right?"
+  ]
 
   constructor(private formBuilder: FormBuilder) {
     this.inputForm = this.formBuilder.group({
@@ -33,16 +43,22 @@ export class InputFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.attempts = 0;
     this.targetLetterArray = this.target.split("");
   }
 
   onSubmit(data) {
-    this.inputForm.reset();
+    if (data.inputValue == null || data.inputValue == "") {
+      this.output = [];
+    } else {
+      this.attempts += 1;
+      this.inputForm.reset();
 
-    this.processAnswer(data.inputValue);
+      this.processAnswer(data.inputValue);
 
-    if (data.inputValue.toLowerCase() === this.target.toLowerCase()) {
-      this.complete.emit();
+      if (data.inputValue.toLowerCase() === this.target.toLowerCase()) {
+        this.complete.emit();
+      }
     }
   }
 
@@ -62,9 +78,9 @@ export class InputFormComponent implements OnInit {
         }
 
         this.output.push({
-            letter: letter,
-            colour: "green"
-          });
+          letter: letter,
+          colour: "green"
+        });
       } else {
         this.output.push({
           letter: "*",
@@ -80,5 +96,28 @@ export class InputFormComponent implements OnInit {
     } else {
       return "text";
     }
+  }
+
+  getHelpMessage() {
+    for (let i = 1; i < this.helpMessages.length; i++) {
+      if (this.attempts < (i * 10)) {
+        if (i == 1) {
+          return this.helpMessages.slice(0, 1);
+        } else {
+          return this.helpMessages.slice(1, i);
+        }
+      }
+    }
+    return this.helpMessages.slice(1);
+  }
+
+  getHelpCountDown() {
+    for (let i = 1; i < this.helpMessages.length; i++) {
+      if (this.attempts < (i * 10)) {
+        let remaining = (i * 10) - this.attempts;
+        return "Next hint in " + remaining + " attempts."
+      }
+    }
+    return "No more hints :(";
   }
 }
