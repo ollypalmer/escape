@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-input-form',
@@ -17,6 +19,9 @@ export class InputFormComponent implements OnInit {
   @Output() complete = new EventEmitter();
 
   targetLetterArray: string[];
+
+  faAngleRight = faAngleRight;
+  faQuestion = faQuestion; 
 
   inputForm;
   output = [];

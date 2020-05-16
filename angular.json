@@ -29,7 +29,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.less"
+              "src/styles.less",
+              "src/assets/css/bootstrap4-neon-glow.min.css",
+              "src/assets/css/bootstrap4-neon-glow.css"
             ],
             "scripts": []
           },
